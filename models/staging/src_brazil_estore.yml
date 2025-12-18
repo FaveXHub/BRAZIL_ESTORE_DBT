@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: brazil_estore_raw   # This is the "Nickname" dbt uses in your SQL
+    database: BRAZIL_ESTORE   # This is the REAL Database name in Snowflake
+    schema: RAW               # This is the REAL Schema name in Snowflake
+    tables:
+      - name: orders          # The real table name in your RAW schema
+      - name: customers_raw       # Adding these now so you don't get more errors later
+      - name: products
+      - name: order_items
+      - name: sellers
+      - name: payments
+      
