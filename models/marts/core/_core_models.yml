@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_orders
+    columns:
+      - name: order_id
+        tests:
+          - not_null  # Removed 'unique' because an order can have multiple items
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ['delivered', 'shipped', 'processing', 'canceled', 'invoiced', 'unavailable', 'approved', 'created']
