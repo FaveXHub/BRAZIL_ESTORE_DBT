@@ -1,0 +1,34 @@
+name: 'Brazil_Estore_DBT_Project'
+version: '1.0.0'
+config-version: 2
+
+# This points to the connection details in your profiles.yml
+profile: 'default' 
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_modules"
+
+# 🏗️ THIS IS THE CORE OF YOUR ARCHITECTURE
+models:
+  Brazil_Estore_DBT_Project:
+    # Staging models should ALWAYS be views for speed and fresh data
+    staging:
+      +materialized: view
+    
+    # Marts are your 'Final Products'
+    marts:
+      # Core models (Star Schema) should be Tables for performance
+      core:
+        +materialized: table
+      
+      # Marketing models can be Views if they change often
+      marketing:
+        +materialized: view
